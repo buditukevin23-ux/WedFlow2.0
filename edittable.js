@@ -1,4 +1,5 @@
 import { db } from "./firebase.js";
+import { showToast } from "./utils.js";
 
 import {
     doc,
@@ -10,27 +11,29 @@ import {
 
 const params = new URLSearchParams(window.location.search);
 
-const tableId = params.get("id");
+const guestId = params.get("id");
 
 
 
-const nameInput = document.getElementById("tableName");
-const seatsInput = document.getElementById("tableSeats");
-const saveBtn = document.getElementById("saveTableBtn");
+const nameInput = document.getElementById("guestName");
+const tableInput = document.getElementById("guestTable");
+const saveBtn = document.getElementById("saveGuestBtn");
 const message = document.getElementById("message");
 
 
 
 
-// Charger la table
+// Charger l'invité
 
-async function loadTable(){
+async function loadGuest(){
 
 
-    if(!tableId){
+    if(!guestId){
 
         message.innerHTML =
-        "❌ Aucune table sélectionnée";
+        "Aucun invité sélectionné";
+
+        showToast("Aucun invité sélectionné","error");
 
         return;
 
@@ -41,23 +44,22 @@ async function loadTable(){
     try{
 
 
-        const tableRef = doc(db,"tables",tableId);
+        const guestRef = doc(db, "guests", guestId);
 
 
-        const tableSnap = await getDoc(tableRef);
-
-
-
-        if(tableSnap.exists()){
-
-
-            const table = tableSnap.data();
+        const guestSnap = await getDoc(guestRef);
 
 
 
-            nameInput.value = table.tableName;
+        if(guestSnap.exists()){
 
-            seatsInput.value = table.seats;
+
+            const guest = guestSnap.data();
+
+
+            nameInput.value = guest.name;
+
+            tableInput.value = guest.table || "";
 
 
 
@@ -65,7 +67,9 @@ async function loadTable(){
 
 
             message.innerHTML =
-            "❌ Table introuvable";
+            "Invité introuvable";
+
+            showToast("Invité introuvable","error");
 
 
         }
@@ -78,7 +82,9 @@ async function loadTable(){
         console.log(error);
 
         message.innerHTML =
-        "❌ Erreur de chargement";
+        "Erreur de chargement";
+
+        showToast("Erreur de chargement","error");
 
 
     }
@@ -88,22 +94,25 @@ async function loadTable(){
 
 
 
-loadTable();
+loadGuest();
 
 
 
 
 
 
-// Enregistrer modification
+// Enregistrer les modifications
+
 
 saveBtn.addEventListener("click", async ()=>{
 
 
-    if(!tableId){
+    if(!guestId){
 
         message.innerHTML =
-        "❌ Aucune table sélectionnée";
+        "Aucun invité sélectionné";
+
+        showToast("Aucun invité sélectionné","error");
 
         return;
 
@@ -116,16 +125,13 @@ saveBtn.addEventListener("click", async ()=>{
 
         await updateDoc(
 
-            doc(db,"tables",tableId),
+            doc(db,"guests",guestId),
 
             {
 
+                name: nameInput.value,
 
-                tableName: nameInput.value,
-
-
-                seats: Number(seatsInput.value)
-
+                table: tableInput.value
 
             }
 
@@ -134,7 +140,13 @@ saveBtn.addEventListener("click", async ()=>{
 
 
         message.innerHTML =
-        "✅ Table modifiée avec succès";
+        "Invité modifié avec succès";
+
+
+        showToast(
+            "Invité modifié avec succès",
+            "success"
+        );
 
 
 
@@ -144,7 +156,13 @@ saveBtn.addEventListener("click", async ()=>{
         console.log(error);
 
         message.innerHTML =
-        "❌ Erreur lors de la modification";
+        "Erreur lors de la modification";
+
+
+        showToast(
+            "Erreur lors de la modification",
+            "error"
+        );
 
 
     }
