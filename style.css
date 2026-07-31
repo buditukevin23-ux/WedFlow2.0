@@ -1,0 +1,2193 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Poppins",sans-serif;
+}
+
+body{
+
+min-height:100vh;
+
+background:linear-gradient(
+135deg,
+#011C40,
+#023859,
+#26658C,
+#54ACBF
+);
+
+}
+.welcome{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+padding:25px;
+
+}
+
+.welcome h1{
+
+color:white;
+
+font-size:42px;
+
+margin-bottom:15px;
+
+}
+
+.welcome p{
+
+color:#EAF8FF;
+
+font-size:18px;
+
+margin-bottom:40px;
+
+}
+
+.welcome button{
+
+width:220px;
+
+height:55px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#26658C,#54ACBF);
+
+color:white;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+.login-container{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+padding:30px;
+
+}
+
+.login-container h1{
+
+color:white;
+
+font-size:34px;
+
+margin-bottom:30px;
+
+text-align:center;
+
+}
+
+.login-container input{
+
+width:100%;
+
+padding:16px;
+
+margin-bottom:18px;
+
+border:none;
+
+border-radius:16px;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+.login-container button{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:16px;
+
+background:linear-gradient(135deg,#26658C,#54ACBF);
+
+color:white;
+
+font-size:17px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+margin-top:10px;
+
+}
+
+.login-container p{
+
+margin-top:20px;
+
+text-align:center;
+
+color:white;
+
+}
+
+.login-container a{
+
+color:#A7EBF2;
+
+font-weight:bold;
+
+text-decoration:none;
+
+}
+*{
+    box-sizing:border-box;
+    font-family:"Poppins", Arial, sans-serif;
+}
+
+
+body{
+
+    margin:0;
+
+    min-height:100vh;
+
+    background:linear-gradient(
+        135deg,
+        #011C40,
+        #54ACBF
+    );
+
+    padding:20px;
+
+    color:#111;
+
+}
+
+
+
+h1{
+
+    color:white;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+
+
+h2{
+
+    color:#011C40;
+
+}
+
+
+
+input,
+select{
+
+    width:100%;
+
+    padding:15px;
+
+    margin:10px 0;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    margin:10px 0;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        #26658C,
+        #54ACBF
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+}
+
+
+
+button:active{
+
+    transform:scale(0.97);
+
+}
+
+
+
+
+
+.dashboard,
+.wedding-dashboard{
+
+    max-width:500px;
+
+    margin:auto;
+
+}
+
+
+
+
+#weddingInfo,
+.guest-card,
+.table-card,
+.stat-card,
+#accessList{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    margin:15px 0;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+
+}
+
+
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+
+}
+
+
+
+.stat-card{
+
+    text-align:center;
+
+}
+
+
+
+.stat-card h3{
+
+    color:#011C40;
+
+}
+
+
+
+.stat-card p{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#26658C;
+
+}
+
+
+
+.actions{
+
+    margin-top:20px;
+
+}
+
+
+
+.guest-card h3,
+.table-card h3{
+
+    color:#011C40;
+
+}
+
+
+
+hr{
+
+    border:none;
+
+    height:1px;
+
+    background:#ddd;
+
+}
+
+
+
+#message{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    margin-top:15px;
+
+}
+
+
+
+
+
+@media(max-width:400px){
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+.logo{
+
+    width:120px;
+
+    display:block;
+
+    margin:20px auto;
+
+    object-fit:contain;
+
+}
+.brand-logo{
+
+    text-align:center;
+
+    margin:20px auto 30px;
+
+}
+
+
+.ring{
+
+    font-size:60px;
+
+    animation:float 2s infinite ease-in-out;
+
+}
+
+
+.brand-name{
+
+    font-size:36px;
+
+    font-weight:800;
+
+    color:white;
+
+    letter-spacing:2px;
+
+    text-shadow:
+    0 4px 15px rgba(0,0,0,0.3);
+
+}
+
+
+
+@keyframes float{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+}
+.splash{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #011C40,
+        #54ACBF
+    );
+
+}
+
+
+
+.splash-logo{
+
+    text-align:center;
+
+    color:white;
+
+}
+
+
+
+.splash-ring{
+
+    font-size:80px;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+
+
+.splash-logo h1{
+
+    color:white;
+
+    font-size:45px;
+
+    margin:10px 0;
+
+}
+
+
+
+.splash-logo p{
+
+    font-size:16px;
+
+    opacity:0.9;
+
+}
+
+
+
+@keyframes pulse{
+
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+
+    50%{
+
+        transform:scale(1.15);
+
+    }
+
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+.creator{
+
+    margin-top:60px;
+
+    font-size:14px;
+
+    letter-spacing:2px;
+
+    opacity:0.8;
+
+    color:white;
+
+}
+/* ==============================
+   WEDFLOW - DESIGN RECEPTION
+   ============================== */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+*{
+    box-sizing:border-box;
+}
+
+
+body.reception-page{
+
+    margin:0;
+
+    min-height:100vh;
+
+    font-family:'Poppins', sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #011C40,
+        #26658C,
+        #54ACBF
+    );
+
+    padding:25px 15px;
+
+    color:#1b1b1b;
+
+}
+
+
+
+
+.reception-container{
+
+    width:100%;
+
+    max-width:600px;
+
+    margin:auto;
+
+}
+
+
+
+
+/* HEADER */
+
+.page-header{
+
+    text-align:center;
+
+    color:white;
+
+    margin-bottom:25px;
+
+}
+
+
+.page-header h1{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.page-header h1 i{
+
+    font-size:30px;
+
+}
+
+
+
+.page-header p{
+
+    margin-top:8px;
+
+    font-size:14px;
+
+    opacity:.9;
+
+}
+
+
+
+
+
+/* CARTES */
+
+
+.info-card,
+.stats-card,
+.search-card{
+
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:22px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+
+}
+
+
+
+
+/* TITRES */
+
+
+h2{
+
+
+    font-size:20px;
+
+    color:#011C40;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:0;
+
+    margin-bottom:20px;
+
+
+}
+
+
+h2 i{
+
+    color:#26658C;
+
+    font-size:22px;
+
+}
+
+
+
+
+/* STATISTIQUES */
+
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+
+
+.stat-item{
+
+
+    background:#f5f9fb;
+
+    border-radius:18px;
+
+    padding:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+
+}
+
+
+
+.stat-item i{
+
+
+    font-size:25px;
+
+    color:#26658C;
+
+    margin-bottom:8px;
+
+
+}
+
+
+
+.stat-item span{
+
+
+    font-size:13px;
+
+    color:#555;
+
+
+}
+
+
+
+.stat-item strong{
+
+
+    font-size:26px;
+
+    color:#011C40;
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* INPUT */
+
+
+input{
+
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    border:1px solid #ddd;
+
+    font-size:15px;
+
+    font-family:'Poppins',sans-serif;
+
+    outline:none;
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+input:focus{
+
+
+    border-color:#26658C;
+
+}
+
+
+
+
+
+/* BOUTON */
+
+
+button{
+
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        #26658C,
+        #54ACBF
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    font-family:'Poppins',sans-serif;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+
+}
+
+
+
+button i{
+
+    font-size:18px;
+
+}
+
+
+
+
+
+/* RESULTAT INVITE */
+
+
+#guestResult{
+
+
+    margin-top:20px;
+
+    font-size:15px;
+
+}
+
+
+
+
+
+@media(max-width:400px){
+
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .page-header h1{
+
+        font-size:24px;
+
+    }
+
+
+}
+/* ==============================
+   WEDFLOW - PAGES GENERALES
+   ============================== */
+
+
+body.dashboard-page{
+
+    margin:0;
+
+    min-height:100vh;
+
+    font-family:'Poppins', sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #011C40,
+        #26658C,
+        #54ACBF
+    );
+
+    padding:25px 15px;
+
+}
+
+
+
+.page-container{
+
+    width:100%;
+
+    max-width:600px;
+
+    margin:auto;
+
+}
+
+
+
+
+/* HEADER DES PAGES */
+
+
+.page-header{
+
+    text-align:center;
+
+    color:white;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.page-header h1{
+
+    margin:0;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+
+.page-header h1 i{
+
+    font-size:30px;
+
+}
+
+
+
+.page-header p{
+
+    font-size:14px;
+
+    margin-top:8px;
+
+    opacity:.9;
+
+}
+
+
+
+
+/* CARTE ACTION */
+
+
+.action-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:24px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+
+
+
+
+/* BOUTONS */
+
+
+.action-card button{
+
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+
+    background:linear-gradient(
+        135deg,
+        #26658C,
+        #54ACBF
+    );
+
+
+    color:white;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:16px;
+
+    font-weight:600;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+
+}
+
+
+
+
+.action-card button i{
+
+    font-size:18px;
+
+}
+
+
+
+
+
+/* CONTENU LISTE */
+
+
+.content-card{
+
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:20px;
+
+    min-height:150px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+
+}
+
+
+
+
+/* ELEMENTS INVITES */
+
+
+.guest-item{
+
+
+    background:#f5f9fb;
+
+    border-radius:18px;
+
+    padding:15px;
+
+    margin-bottom:12px;
+
+    font-size:15px;
+
+    color:#011C40;
+
+
+}
+
+
+
+.guest-item strong{
+
+    font-size:17px;
+
+}
+.loading{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#26658C;
+
+    font-size:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.loading i{
+
+    font-size:22px;
+
+}
+/* ==============================
+   DASHBOARD WEDFLOW
+   ============================== */
+
+
+.dashboard-container{
+
+    width:100%;
+
+    max-width:500px;
+
+    margin:auto;
+
+}
+
+
+
+.brand-logo{
+
+    text-align:center;
+
+    color:white;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.ring{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+.ring i{
+
+    font-size:40px;
+
+    color:#26658C;
+
+}
+
+
+
+.brand-name{
+
+    margin-top:12px;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+
+
+.dashboard-card{
+
+
+    background:white;
+
+    padding:30px 22px;
+
+    border-radius:28px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+    text-align:center;
+
+
+}
+
+
+
+.dashboard-card h1{
+
+    color:#011C40;
+
+    font-size:28px;
+
+    margin:0;
+
+}
+
+
+
+.welcome-text{
+
+    color:#666;
+
+    font-size:14px;
+
+    margin:15px 0 25px;
+
+}
+
+
+
+.dashboard-card button{
+
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        #26658C,
+        #54ACBF
+    );
+
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    font-family:'Poppins',sans-serif;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+#userEmail{
+
+    color:#26658C;
+
+    font-size:14px;
+
+    margin:15px 0;
+
+}
+
+
+
+.logout-btn{
+
+    background:#011C40 !important;
+
+}
+/* Navigation Dashboard */
+
+.dashboard-nav{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:15px;
+
+margin:30px 0;
+
+}
+
+.nav-card{
+
+background:#ffffff;
+
+border-radius:18px;
+
+padding:18px 10px;
+
+text-decoration:none;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+transition:.25s;
+
+}
+
+.nav-card i{
+
+font-size:28px;
+
+color:#26658C;
+
+margin-bottom:10px;
+
+}
+
+.nav-card span{
+
+font-size:13px;
+
+font-weight:600;
+
+color:#011C40;
+
+text-align:center;
+
+}
+
+.nav-card:active{
+
+transform:scale(.95);
+
+}
+/* ===== Statistiques Premium ===== */
+
+.stats{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+margin-top:25px;
+
+}
+
+.stat-card{
+
+background:linear-gradient(135deg,#26658C,#54ACBF);
+
+border-radius:22px;
+
+padding:22px;
+
+color:#fff;
+
+box-shadow:0 12px 30px rgba(38,101,140,.25);
+
+transition:.3s;
+
+animation:fadeUp .5s ease;
+
+}
+
+.stat-card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.stat-card:active{
+
+transform:scale(.96);
+
+}
+
+.stat-card h3{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+font-size:16px;
+
+font-weight:600;
+
+margin-bottom:15px;
+
+color:#fff;
+
+}
+
+.stat-card h3 i{
+
+font-size:22px;
+
+}
+
+.stat-card p{
+
+font-size:34px;
+
+font-weight:700;
+
+margin:0;
+
+color:#fff;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+/* ===== Carte Mon mariage ===== */
+
+#weddingInfo{
+
+background:linear-gradient(135deg,#011C40,#26658C);
+
+border-radius:24px;
+
+padding:25px;
+
+margin:25px 0;
+
+color:#fff;
+
+box-shadow:0 15px 35px rgba(1,28,64,.25);
+
+animation:fadeUp .6s ease;
+
+}
+
+#weddingInfo h2{
+
+font-size:24px;
+
+font-weight:700;
+
+margin-bottom:12px;
+
+color:#fff;
+
+}
+
+#weddingInfo p{
+
+font-size:16px;
+
+line-height:1.8;
+
+color:rgba(255,255,255,.95);
+
+margin:6px 0;
+
+}
+/* ===========================
+   Transitions entre les pages
+=========================== */
+
+
+
+
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+
+button,
+.nav-card,
+a{
+
+transition:all .25s ease;
+
+}
+
+button:active,
+.nav-card:active,
+a:active{
+
+transform:scale(.96);
+
+}
+
+.stat-card{
+
+transition:transform .25s ease, box-shadow .25s ease;
+
+}
+
+.stat-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 18px 35px rgba(0,0,0,.18);
+
+}
+
+input,
+select{
+
+transition:.25s;
+
+}
+
+input:focus,
+select:focus{
+
+transform:scale(1.02);
+
+box-shadow:0 0 0 4px rgba(84,172,191,.2);
+
+}
+/* ===== Toast WedFlow ===== */
+
+.toast{
+
+position:fixed;
+
+top:25px;
+
+left:50%;
+
+transform:translateX(-50%) translateY(-30px);
+
+background:#011C40;
+
+color:#fff;
+
+padding:14px 22px;
+
+border-radius:14px;
+
+font-size:15px;
+
+font-weight:600;
+
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.35s;
+
+z-index:9999;
+
+}
+
+.toast.show{
+
+opacity:1;
+
+visibility:visible;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+.toast.success{
+
+background:#22c55e;
+
+}
+
+.toast.error{
+
+background:#ef4444;
+
+}
+
+.toast.info{
+
+background:#26658C;
+
+}
+/* ============================= */
+/* TRANSITIONS ENTRE LES PAGES */
+/* ============================= */
+
+body {
+    animation: pageEnter 0.4s ease;
+}
+
+
+@keyframes pageEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Animation des cartes */
+
+.container,
+.page-container,
+.wedding-dashboard,
+.content-card,
+.action-card,
+.stat-card,
+.guest-card,
+.table-card {
+
+    animation: cardAppear 0.5s ease;
+
+}
+
+
+@keyframes cardAppear {
+
+    from {
+
+        opacity:0;
+        transform:scale(0.95);
+
+    }
+
+
+    to {
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+/* ============================= */
+/* ANIMATION DES BOUTONS */
+/* ============================= */
+
+
+button {
+
+    transition: 
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+}
+
+
+
+button:active {
+
+    transform: scale(0.94);
+
+}
+
+
+
+button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+
+}
+/* ============================= */
+/* APPARITION DES BLOCS */
+/* ============================= */
+
+.card-animation {
+
+    animation: slideUp 0.5s ease forwards;
+
+}
+
+
+@keyframes slideUp {
+
+    from {
+
+        opacity:0;
+
+        transform: translateY(30px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* Effet léger sur les cartes */
+
+.guest-card,
+.table-card,
+.stat-card,
+.content-card,
+.action-card {
+
+    transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+}
+
+
+
+.guest-card:hover,
+.table-card:hover,
+.stat-card:hover,
+.content-card:hover,
+.action-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+
+}
+/* ===== Champ de recherche ===== */
+
+.input-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:white;
+
+    border:1px solid #ddd;
+
+    border-radius:16px;
+
+    padding:0 15px;
+
+    margin-bottom:15px;
+
+}
+
+.input-box i{
+
+    color:#26658C;
+
+    font-size:20px;
+
+}
+
+.input-box input{
+
+    flex:1;
+
+    border:none;
+
+    background:transparent;
+
+    margin:0;
+
+    box-shadow:none;
+
+}
+#guestResult{
+
+    margin-top:20px;
+
+}
+
+#guestResult .guest-card{
+
+    border-radius:22px;
+
+    background:#fff;
+
+    padding:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+#guestResult h3{
+
+    color:#011C40;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+#guestResult p{
+
+    margin:12px 0;
+
+    color:#444;
+
+}
+
+#guestResult button{
+
+    margin-top:18px;
+
+}
+/* Suggestions de recherche */
+
+.suggestions{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    margin-top:8px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+    display:none;
+
+}
+
+.suggestion-item{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.suggestion-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.suggestion-item:active{
+
+    background:#f5f9fb;
+
+}
+
+.suggestion-item strong{
+
+    color:#011C40;
+
+    display:block;
+
+}
+
+.suggestion-item span{
+
+    color:#666;
+
+    font-size:13px;
+
+}
+.suggestions{
+    display:none;
+    background:white;
+    border-radius:18px;
+    margin-top:10px;
+    overflow:hidden;
+}
+
+.suggestion-item{
+    padding:15px;
+    border-bottom:1px solid #eee;
+}
+.suggestions{
+
+    background:white;
+    border-radius:15px;
+    margin-top:-10px;
+    margin-bottom:15px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+
+.suggestion-item{
+
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    border-bottom:1px solid #eee;
+
+}
+
+
+.suggestion-item:hover{
+
+    background:#f1f8fa;
+
+}
+
+
+.suggestion-item strong{
+
+    color:#011C40;
+}
+
+
+.suggestion-item span{
+
+    color:#26658C;
+    font-size:13px;
+
+}
+/* ==============================
+   MOBILE RECEPTION OPTIMISATION
+   ============================== */
+
+@media (max-width:600px){
+
+    body.reception-page{
+
+        padding:15px 10px;
+
+    }
+
+
+    .reception-container{
+
+        width:100%;
+
+    }
+
+
+    .page-header h1{
+
+        font-size:24px;
+
+    }
+
+
+    .page-header p{
+
+        font-size:13px;
+
+    }
+
+
+
+    .info-card,
+    .stats-card,
+    .search-card,
+    .action-card,
+    .content-card{
+
+        padding:16px;
+
+        border-radius:20px;
+
+        margin-bottom:15px;
+
+    }
+
+
+
+    .stats-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:10px;
+
+    }
+
+
+
+    .stat-item{
+
+        padding:12px;
+
+        border-radius:15px;
+
+    }
+
+
+
+    .stat-item strong{
+
+        font-size:22px;
+
+    }
+
+
+
+    .stat-item span{
+
+        font-size:12px;
+
+    }
+
+
+
+    input{
+
+        padding:14px;
+
+        font-size:14px;
+
+    }
+
+
+
+    button{
+
+        padding:14px;
+
+        font-size:14px;
+
+        border-radius:14px;
+
+    }
+
+
+
+    .guest-card,
+    .table-card{
+
+        padding:15px;
+
+        border-radius:18px;
+
+    }
+
+
+
+    .guest-card h3,
+    .table-card h3{
+
+        font-size:17px;
+
+    }
+
+
+
+    .guest-card p,
+    .table-card p{
+
+        font-size:14px;
+
+        line-height:1.6;
+
+    }
+
+
+
+    .suggestion-item{
+
+        padding:12px;
+
+        font-size:14px;
+
+    }
+
+
+
+    .action-card button{
+
+        margin-bottom:10px;
+
+    }
+
+
+}

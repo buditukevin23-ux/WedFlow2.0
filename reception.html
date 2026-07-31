@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Réception - WedFlow</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body class="reception-page">
+
+
+<div class="reception-container">
+
+
+    <div class="page-header">
+
+        <h1>
+            <i class="fi fi-rr-ticket"></i>
+            Espace Réception
+        </h1>
+
+        <p>
+            Gestion des invités et contrôle d'arrivée
+        </p>
+
+    </div>
+
+
+
+    <div class="info-card" id="weddingInfo">
+
+        Chargement du mariage...
+
+    </div>
+
+
+
+
+
+    <div class="stats-card" id="stats">
+
+
+        <h2>
+            <i class="fi fi-rr-chart-histogram"></i>
+            Statistiques
+        </h2>
+
+
+
+        <div class="stats-grid">
+
+
+            <div class="stat-item">
+
+                <i class="fi fi-rr-users"></i>
+
+                <span>
+                    Invités
+                </span>
+
+                <strong id="totalGuests">
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <div class="stat-item">
+
+                <i class="fi fi-rr-check"></i>
+
+                <span>
+                    Arrivés
+                </span>
+
+                <strong id="arrivedGuests">
+                    0
+                </strong>
+
+            </div>
+
+
+
+
+            <div class="stat-item">
+
+                <i class="fi fi-rr-hourglass-end"></i>
+
+                <span>
+                    Restants
+                </span>
+
+                <strong id="remainingGuests">
+                    0
+                </strong>
+
+            </div>
+
+
+
+
+            <div class="stat-item">
+
+                <i class="fi fi-rr-chair-office"></i>
+
+                <span>
+                    Tables
+                </span>
+
+                <strong id="totalTables">
+                    0
+                </strong>
+
+            </div>
+
+
+
+
+            <div class="stat-item">
+
+                <i class="fi fi-rr-circle"></i>
+
+                <span>
+                    Disponibles
+                </span>
+
+                <strong id="availableTables">
+                    0
+                </strong>
+
+            </div>
+
+
+
+
+            <div class="stat-item">
+
+                <i class="fi fi-rr-circle-small"></i>
+
+                <span>
+                    Occupées
+                </span>
+
+                <strong id="occupiedTables">
+                    0
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="search-card">
+
+    <h2>
+
+        <i class="fi fi-rr-search"></i>
+
+        Rechercher un invité
+
+    </h2>
+
+    <div class="input-box">
+
+        <i class="fi fi-rr-user"></i>
+
+        <input
+            type="text"
+            id="guestSearch"
+            placeholder="Nom de l'invité">
+
+    </div>
+<div id="suggestions" class="suggestions"></div>
+
+    <button id="searchGuestBtn">
+
+        <i class="fi fi-rr-search"></i>
+
+        Rechercher
+
+    </button>
+
+    <div id="guestResult"></div>
+
+</div>
+
+
+<!-- Actions réception -->
+
+<div class="action-card">
+
+    <button onclick="showGuests()">
+
+        <i class="fi fi-rr-users"></i>
+
+        Liste des invités
+
+    </button>
+
+
+    <button onclick="showTables()">
+
+        <i class="fi fi-rr-table-picnic"></i>
+
+        Liste des tables
+
+    </button>
+
+</div>
+
+
+
+<div class="content-card" id="receptionList">
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+<script type="module" src="reception.js"></script>
+
+
+</body>
+
+</html>
