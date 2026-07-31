@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#26658C">
 </head>
 
 <body>
@@ -27,6 +29,17 @@
     </button>
 
 </div>
+<script>
 
+if ("serviceWorker" in navigator) {
+
+    navigator.serviceWorker.register("service-worker.js")
+    .then(() => {
+        console.log("WedFlow App prête");
+    });
+
+}
+
+</script>
 </body>
 </html>
