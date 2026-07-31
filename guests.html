@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invités - WedFlow</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="app-header">
+
+<h1>
+<i class="fi fi-rr-users"></i>
+Invités
+</h1>
+
+<p>Liste des invités du mariage</p>
+
+</div>
+
+
+
+<div id="guestList"></div>
+
+
+</div>
+
+
+
+<!-- Fenêtre modifier -->
+
+<div id="editModal" class="modal">
+
+
+<div class="modal-box">
+
+
+<h2>
+<i class="fi fi-rr-edit"></i>
+Modifier l'invité
+</h2>
+
+
+<input id="editName" placeholder="Nom de l'invité">
+
+
+<input id="editNumber" type="number" placeholder="Nombre de personnes">
+
+
+<input id="editTable" placeholder="Nom de la table">
+
+
+<button onclick="saveEditGuest()">
+
+<i class="fi fi-rr-disk"></i>
+Enregistrer
+
+</button>
+
+
+<button onclick="closeEditGuest()">
+
+<i class="fi fi-rr-cross-circle"></i>
+Annuler
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="bottom-nav">
+
+
+<a href="dashboard.html">
+
+<i class="fi fi-rr-home"></i>
+
+<span>Accueil</span>
+
+</a>
+
+
+<a href="guests.html">
+
+<i class="fi fi-rr-users"></i>
+
+<span>Invités</span>
+
+</a>
+
+
+<a href="reception.html">
+
+<i class="fi fi-rr-door-open"></i>
+
+<span>Réception</span>
+
+</a>
+
+
+<a href="profile.html">
+
+<i class="fi fi-rr-user"></i>
+
+<span>Profil</span>
+
+</a>
+
+<a href="tables.html">
+<i class="fi fi-rr-restaurant"></i>
+<span>Tables</span>
+</a>
+
+</div>
+
+
+
+<script type="module" src="script.js"></script>
+
+
+</body>
+
+</html>

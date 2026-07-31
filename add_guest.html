@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajouter un invité - WedFlow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="add-guest-page">
+
+<script>
+
+let loggedIn = localStorage.getItem("loggedIn");
+
+if(loggedIn !== "true"){
+
+window.location.href = "login.html";
+
+}
+
+</script>
+
+<div class="container">
+
+<h1>👥 Ajouter un invité</h1>
+
+<input type="text" id="guestName" placeholder="Nom de l'invité">
+
+<input type="number" id="guestNumber" placeholder="Nombre de personnes">
+
+<div class="table-selector" onclick="openTableModal()">
+
+    <i class="fi fi-rr-restaurant"></i>
+
+    <span id="selectedTable">
+        Choisir une table
+    </span>
+
+    <i class="fi fi-rr-angle-small-down"></i>
+
+</div>
+
+<input type="hidden" id="tableName">
+
+<input type="number" id="tableCapacity" placeholder="Nombre de places de la table">
+
+<button onclick="addGuest()">Enregistrer</button>
+
+</div>
+
+<div id="tableModal" class="table-modal">
+
+<div class="table-modal-content">
+
+<div class="table-modal-header">
+
+<h2>
+<i class="fi fi-rr-restaurant"></i>
+Choisir une table
+</h2>
+
+<button onclick="closeTableModal()">
+<i class="fi fi-rr-cross"></i>
+</button>
+
+</div>
+
+<input
+type="text"
+id="tableSearch"
+placeholder="Rechercher une table..."
+onkeyup="showTableCards()">
+
+<div id="tableList"></div>
+
+</div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+<script>
+loadTables();
+</script>
+
+</body>
+
+</html>

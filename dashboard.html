@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WedFlow Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<script>
+
+let loggedIn = localStorage.getItem("loggedIn");
+
+
+if(loggedIn !== "true"){
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+
+
+<div class="container">
+
+
+<div class="app-header">
+
+<h1>
+<i class="fi fi-rr-rings-wedding"></i> WedFlow
+</h1>
+
+<p>Gestion intelligente des invités</p>
+
+</div>
+
+
+<div class="profile-card">
+
+<h3 id="userWelcome"></h3>
+
+<p id="userPhone"></p>
+
+
+<button onclick="logoutUser()">
+
+<i class="fi fi-rr-sign-out-alt"></i>
+Déconnexion
+
+</button>
+
+
+</div>
+
+
+
+<h2 id="info"></h2>
+
+
+
+<div class="stats-container">
+
+
+<div class="stat-card">
+
+<h3>
+<i class="fi fi-rr-users"></i> Invités
+</h3>
+
+<p id="totalGuests"></p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<h3>
+<i class="fi fi-rr-check-circle"></i> Arrivés
+</h3>
+
+<p id="arrivedGuests"></p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<h3>
+<i class="fi fi-rr-time-fast"></i> Restants
+</h3>
+
+<p id="remainingGuests"></p>
+
+</div>
+
+
+</div>
+
+
+<p id="totalGuests"></p>
+
+<p id="arrivedGuests"></p>
+
+<p id="remainingGuests"></p>
+
+
+</div>
+
+
+
+<a href="add_guest.html">
+
+<button>
+<i class="fi fi-rr-user-add"></i>
+Ajouter un invité
+</button>
+
+</a>
+
+
+<a href="guests.html">
+
+<button>
+<i class="fi fi-rr-list"></i>
+Liste des invités
+</button>
+
+</a>
+
+
+<a href="reception.html">
+
+<button>
+<i class="fi fi-rr-door-open"></i>
+Mode Réception
+</button>
+
+</a>
+
+
+</div>
+
+
+
+
+<script type="module">
+
+import { loadDashboard } from "./script.js";
+
+
+let user = JSON.parse(localStorage.getItem("user"));
+
+
+if(user){
+
+document.getElementById("userWelcome").innerHTML =
+"Bonjour " + user.name;
+
+
+document.getElementById("userPhone").innerHTML =
+user.phone;
+
+}
+
+
+let wedding = JSON.parse(localStorage.getItem("wedding"));
+
+
+if(wedding){
+
+document.getElementById("info").innerHTML =
+wedding.name + "<br>" +
+wedding.date + "<br>" +
+wedding.place;
+
+}
+
+
+loadDashboard();
+
+
+</script>
+
+
+<div class="bottom-nav">
+
+<a href="dashboard.html">
+<i class="fi fi-rr-home"></i>
+<span>Accueil</span>
+</a>
+
+
+<a href="guests.html">
+<i class="fi fi-rr-users"></i>
+<span>Invités</span>
+</a>
+
+
+<a href="reception.html">
+<i class="fi fi-rr-door-open"></i>
+<span>Réception</span>
+</a>
+
+
+<a href="profile.html">
+<i class="fi fi-rr-user"></i>
+<span>Profil</span>
+</a>
+
+<a href="tables.html">
+<i class="fi fi-rr-restaurant"></i>
+<span>Tables</span>
+</a>
+
+</div>
+
+</body>
+
+</html>

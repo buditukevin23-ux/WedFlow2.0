@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Plan des tables - WedFlow</title>
+
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-rounded-regular/css/uicons-rounded-regular.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="dashboard-page">
+
+<div class="container">
+
+<div class="app-header">
+<h1><i class="fi fi-rr-restaurant"></i> Plan des tables</h1>
+<p>Répartition des invités par table</p>
+</div>
+
+<div class="table-form">
+
+<input type="number" id="tableNumber" placeholder="Numéro de la table">
+
+<input type="text" id="tableName" placeholder="Nom de la table">
+
+<input type="number" id="tableCapacity" placeholder="Nombre de places">
+
+<button onclick="addTable()">Ajouter la table</button>
+
+</div>
+
+<div id="tablesList" class="tables-grid"></div>
+
+<div id="tableModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>
+            <i class="fi fi-rr-restaurant"></i>
+            Détails de la table
+        </h2>
+
+        <div id="tableDetails"></div>
+
+        <button onclick="closeTableModal()">
+            Fermer
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<div id="editTableModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>
+            <i class="fi fi-rr-edit"></i>
+            Modifier la table
+        </h2>
+
+        <input type="number" id="editTableNumber" placeholder="Numéro">
+
+        <input type="text" id="editTableName" placeholder="Nom">
+
+        <input type="number" id="editTableCapacity" placeholder="Nombre de places">
+
+        <button onclick="saveTableEdit()">
+            Enregistrer
+        </button>
+
+        <button onclick="closeEditTableModal()">
+            Annuler
+        </button>
+
+    </div>
+
+</div>
+<script type="module" src="script.js"></script>
+
+<script>
+showTables();
+</script>
+
+</body>
+
+</html>
