@@ -1,8 +1,21 @@
 {
   "name": "WedFlow",
   "short_name": "WedFlow",
+  "description": "Application de gestion des mariages et des invités",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#011C40",
-  "theme_color": "#26658C"
+  "theme_color": "#26658C",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
