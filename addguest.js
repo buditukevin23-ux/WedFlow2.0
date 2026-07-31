@@ -1,4 +1,5 @@
 import { auth, db } from "./firebase.js";
+import { showToast } from "./utils.js";
 
 import {
     onAuthStateChanged
@@ -38,9 +39,7 @@ async function loadTables(){
     );
 
 
-
     const tablesSnapshot = await getDocs(tablesQuery);
-
 
 
 
@@ -64,13 +63,9 @@ async function loadTables(){
 
     guestsSnapshot.forEach((guestDoc)=>{
 
-
         guests.push(guestDoc.data());
 
-
     });
-
-
 
 
 
@@ -103,7 +98,7 @@ async function loadTables(){
         ${available <= 0 ? "disabled" : ""}
         >
 
-          ${table.tableName} 
+        ${table.tableName}
         (${available} place(s) disponible(s))
 
         </option>
@@ -112,9 +107,7 @@ async function loadTables(){
         `;
 
 
-
     });
-
 
 
 }
@@ -134,6 +127,7 @@ onAuthStateChanged(auth, async (user)=>{
         message.innerHTML =
         "Vous devez être connecté";
 
+        showToast("Vous devez être connecté","error");
 
         return;
 
@@ -164,6 +158,7 @@ onAuthStateChanged(auth, async (user)=>{
         message.innerHTML =
         "Aucun mariage trouvé";
 
+        showToast("Aucun mariage trouvé","error");
 
         return;
 
@@ -211,15 +206,18 @@ addGuestBtn.addEventListener("click", async ()=>{
     guestTable.value;
 
 
-const people =
-Number(document.getElementById("guestNumber").value);
+    const people =
+    Number(document.getElementById("guestNumber").value);
+
+
 
     if(name === ""){
 
 
         message.innerHTML =
-        "❌ Entrez le nom de l'invité";
+        "Entrez le nom de l'invité";
 
+        showToast("Entrez le nom de l'invité","error");
 
         return;
 
@@ -232,8 +230,9 @@ Number(document.getElementById("guestNumber").value);
 
 
         message.innerHTML =
-        "❌ Choisissez une table";
+        "Choisissez une table";
 
+        showToast("Choisissez une table","error");
 
         return;
 
@@ -249,19 +248,17 @@ Number(document.getElementById("guestNumber").value);
 
         {
 
+            name:name,
 
-name:name,
+            table:table,
 
-table:table,
+            people:people,
 
-people:people,
+            weddingId:weddingId,
 
-weddingId:weddingId,
-
-arrived:false,
+            arrived:false,
 
             createdAt:serverTimestamp()
-
 
         }
 
@@ -271,12 +268,17 @@ arrived:false,
 
 
     message.innerHTML =
-    "✅ Invité ajouté avec succès";
+    "Invité ajouté avec succès";
+
+
+    showToast(
+        "Invité ajouté avec succès",
+        "success"
+    );
 
 
 
     document.getElementById("guestName").value = "";
-
 
 
 });
