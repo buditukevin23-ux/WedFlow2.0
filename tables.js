@@ -1,4 +1,5 @@
 import { auth, db } from "./firebase.js";
+import { showToast } from "./utils.js";
 
 import {
     onAuthStateChanged
@@ -24,7 +25,9 @@ onAuthStateChanged(auth, async (user)=>{
     if(!user){
 
         tableList.innerHTML =
-        "❌ Vous devez être connecté";
+        "Vous devez être connecté";
+
+        showToast("Vous devez être connecté", "error");
 
         return;
 
@@ -33,9 +36,6 @@ onAuthStateChanged(auth, async (user)=>{
 
 
     try{
-
-
-        // Trouver le mariage
 
 
         const weddingQuery = query(
@@ -55,7 +55,9 @@ onAuthStateChanged(auth, async (user)=>{
         if(weddingSnapshot.empty){
 
             tableList.innerHTML =
-            "❌ Aucun mariage trouvé";
+            "Aucun mariage trouvé";
+
+            showToast("Aucun mariage trouvé", "error");
 
             return;
 
@@ -76,11 +78,6 @@ onAuthStateChanged(auth, async (user)=>{
         });
 
 
-
-
-
-
-        // Charger les invités
 
 
         const guestsQuery = query(
@@ -112,10 +109,6 @@ onAuthStateChanged(auth, async (user)=>{
 
 
 
-
-
-
-        // Charger les tables
 
 
         const tablesQuery = query(
@@ -162,17 +155,14 @@ onAuthStateChanged(auth, async (user)=>{
 
 
 
-            // Compter les invités sur cette table
-
-
             const occupied = guests
-.filter(
-    guest => guest.table === table.tableName
-)
-.reduce(
-    (total, guest) => total + Number(guest.people || 1),
-    0
-);
+            .filter(
+                guest => guest.table === table.tableName
+            )
+            .reduce(
+                (total, guest) => total + Number(guest.people || 1),
+                0
+            );
 
 
 
@@ -191,46 +181,53 @@ onAuthStateChanged(auth, async (user)=>{
 
 
             <h3>
-            🪑 ${table.tableName}
+            <i class="fi fi-rr-chair"></i>
+            ${table.tableName}
             </h3>
 
 
 
             <p>
-            👥 Capacité : ${table.seats} places
+            <i class="fi fi-rr-users"></i>
+            Capacité : ${table.seats} places
             </p>
 
 
 
             <p>
-            ✅ Occupées : ${occupied}
+            <i class="fi fi-rr-check"></i>
+            Occupées : ${occupied}
             </p>
 
 
 
             <p>
-            🟢 Disponibles : ${available}
+            <i class="fi fi-rr-circle"></i>
+            Disponibles : ${available}
             </p>
 
 
 
 
             <button onclick="editTable('${tableDoc.id}')">
-            ✏️ Modifier
+
+            <i class="fi fi-rr-edit"></i>
+            Modifier
+
             </button>
 
 
 
             <button onclick="deleteTable('${tableDoc.id}')">
-            🗑️ Supprimer
+
+            <i class="fi fi-rr-trash"></i>
+            Supprimer
+
             </button>
 
 
 
             </div>
-
-
-            <hr>
 
 
             `;
@@ -250,7 +247,9 @@ onAuthStateChanged(auth, async (user)=>{
 
 
         tableList.innerHTML =
-        "❌ Erreur : " + error.message;
+        "Erreur : " + error.message;
+
+        showToast(error.message,"error");
 
 
     }
@@ -297,7 +296,10 @@ window.deleteTable = async function(id){
         );
 
 
-        alert("Table supprimée ✅");
+        showToast(
+            "Table supprimée avec succès",
+            "success"
+        );
 
 
         location.reload();
