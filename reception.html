@@ -173,46 +173,70 @@
 
     <div class="search-card">
 
+    <h2>
 
-        <h2>
+        <i class="fi fi-rr-search"></i>
 
-            <i class="fi fi-rr-search"></i>
+        Rechercher un invité
 
-            Rechercher un invité
+    </h2>
 
-        </h2>
+    <div class="input-box">
 
+        <i class="fi fi-rr-user"></i>
 
-
-
-        <input 
-        type="text" 
-        id="guestSearch"
-        placeholder="Nom de l'invité">
-
-
-
-
-
-        <button id="searchGuestBtn">
-
-            <i class="fi fi-rr-search"></i>
-
-            Rechercher
-
-        </button>
-
-
-
-
-
-        <div id="guestResult">
-
-        </div>
-
-
+        <input
+            type="text"
+            id="guestSearch"
+            placeholder="Nom de l'invité">
 
     </div>
+<div id="suggestions" class="suggestions"></div>
+
+    <button id="searchGuestBtn">
+
+        <i class="fi fi-rr-search"></i>
+
+        Rechercher
+
+    </button>
+
+    <div id="guestResult"></div>
+
+</div>
+
+
+<!-- Actions réception -->
+
+<div class="action-card">
+
+    <button onclick="showGuests()">
+
+        <i class="fi fi-rr-users"></i>
+
+        Liste des invités
+
+    </button>
+
+
+    <button onclick="showTables()">
+
+        <i class="fi fi-rr-table-picnic"></i>
+
+        Liste des tables
+
+    </button>
+
+</div>
+
+
+
+<div class="content-card" id="receptionList">
+
+</div>
+
+
+</div>
 
 
 
