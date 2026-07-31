@@ -1,4 +1,5 @@
 import { db } from "./firebase.js";
+import { showToast } from "./utils.js";
 
 import {
     doc,
@@ -6,8 +7,10 @@ import {
     collection,
     query,
     where,
-    getDocs
+    getDocs,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
 
 
 // Récupérer l'identifiant du mariage après le code réception
@@ -18,9 +21,12 @@ const weddingId = localStorage.getItem("receptionWeddingId");
 const weddingInfo = document.getElementById("weddingInfo");
 
 
+
 if(!weddingId){
 
-    weddingInfo.innerHTML = "❌ Aucun mariage trouvé";
+    weddingInfo.innerHTML = "Aucun mariage trouvé";
+
+    showToast("Aucun mariage trouvé","error");
 
 } else {
 
@@ -40,11 +46,18 @@ if(!weddingId){
 
         weddingInfo.innerHTML = `
 
-        <h2>💍 ${wedding.groomName} & ${wedding.brideName}</h2>
+        <h2>
+        <i class="fi fi-rr-rings-wedding"></i>
+        ${wedding.groomName} & ${wedding.brideName}
+        </h2>
 
-        <p>📅 Date : ${wedding.date}</p>
+        <p>
+        Date : ${wedding.date}
+        </p>
 
-        <p>📍 Lieu : ${wedding.place}</p>
+        <p>
+        Lieu : ${wedding.place}
+        </p>
 
         `;
 
@@ -57,9 +70,96 @@ if(!weddingId){
 
 // Recherche invité
 
-
 const searchBtn = document.getElementById("searchGuestBtn");
 
+const suggestions = document.getElementById("suggestions");
+
+const guestSearch = document.getElementById("guestSearch");
+
+
+guestSearch.addEventListener("input", async function () {
+
+    const text = this.value.trim().toLowerCase();
+
+
+    if(text === ""){
+
+        suggestions.style.display = "none";
+        suggestions.innerHTML = "";
+
+        return;
+
+    }
+
+
+    try {
+
+
+        const guestsQuery = query(
+            collection(db,"guests"),
+            where("weddingId","==",weddingId)
+        );
+
+
+        const guestsSnapshot = await getDocs(guestsQuery);
+
+
+        suggestions.innerHTML = "";
+
+        let found = false;
+
+
+        guestsSnapshot.forEach((guestDoc)=>{
+
+
+            const guest = guestDoc.data();
+
+
+            if(
+                guest.name &&
+                guest.name.toLowerCase().includes(text)
+            ){
+
+
+                found = true;
+
+
+                suggestions.innerHTML += `
+
+                <div class="suggestion-item"
+                onclick="selectGuest('${guest.name}')">
+
+                    <strong>
+                    <i class="fi fi-rr-user"></i>
+                    ${guest.name}
+                    </strong>
+
+                    <span>
+                    ${guest.table || "Sans table"}
+                    </span>
+
+                </div>
+
+                `;
+
+            }
+
+
+        });
+
+
+        suggestions.style.display =
+        found ? "block" : "none";
+
+
+    } catch(error){
+
+        console.log(error);
+
+    }
+
+
+});
 
 searchBtn.addEventListener("click", async ()=>{
 
@@ -73,6 +173,8 @@ searchBtn.addEventListener("click", async ()=>{
     if(name === ""){
 
         result.innerHTML = "Écris un nom";
+
+        showToast("Écris un nom","error");
 
         return;
 
@@ -97,7 +199,9 @@ searchBtn.addEventListener("click", async ()=>{
 
     if(snapshot.empty){
 
-        result.innerHTML = "❌ Invité introuvable";
+        result.innerHTML = "Invité introuvable";
+
+        showToast("Invité introuvable","error");
 
         return;
 
@@ -107,25 +211,95 @@ searchBtn.addEventListener("click", async ()=>{
 
     snapshot.forEach((guestDoc)=>{
 
+    const guest = guestDoc.data();
 
-        const guest = guestDoc.data();
+    result.innerHTML = `
 
+    <div class="guest-card">
 
-        result.innerHTML = `
+        <h3>
+            <i class="fi fi-rr-user"></i>
+            ${guest.name}
+        </h3>
 
-        <h3>✅ Invité trouvé</h3>
+        <p>
+            <strong>
+                <i class="fi fi-rr-users"></i>
+                Nombre de personnes :
+            </strong>
+            ${guest.people || 1}
+        </p>
 
-        <p>Nom : ${guest.name}</p>
+        <p>
+            <strong>
+                <i class="fi fi-rr-table-picnic"></i>
+                Table :
+            </strong>
+            ${guest.table}
+        </p>
 
-        <p>Table : ${guest.table}</p>
+        <p>
+            <strong>
+                <i class="fi fi-rr-check"></i>
+                Statut :
+            </strong>
 
-        `;
+            ${
+                guest.arrived
+                ? "Déjà arrivé"
+                : "Pas encore arrivé"
+            }
+        </p>
 
+        ${
+            !guest.arrived
+            ?
+            `
+            <button id="arriveBtn">
+                <i class="fi fi-rr-check"></i>
+                Marquer arrivé
+            </button>
+            `
+            :
+            ""
+        }
 
-    });
+    </div>
+
+    `;
+
+    if(!guest.arrived){
+
+        document
+        .getElementById("arriveBtn")
+        .addEventListener("click", async ()=>{
+
+            await updateDoc(
+                doc(db,"guests",guestDoc.id),
+                {
+                    arrived:true
+                }
+            );
+
+            showToast("Invité marqué comme arrivé","success");
+
+            loadStatistics();
+
+            searchBtn.click();
+
+        });
+
+    }
+
+    showToast("Invité trouvé","success");
+
+});
 
 
 });
+
+
+
 async function loadStatistics(){
 
 
@@ -139,15 +313,21 @@ async function loadStatistics(){
 
 
     let total = 0;
+
     let arrived = 0;
+
     let tables = [];
+
 
 
     guestsSnapshot.forEach((guestDoc)=>{
 
+
         const guest = guestDoc.data();
 
+
         total++;
+
 
 
         if(guest.arrived === true){
@@ -157,11 +337,13 @@ async function loadStatistics(){
         }
 
 
+
         if(guest.table && !tables.includes(guest.table)){
 
             tables.push(guest.table);
 
         }
+
 
     });
 
@@ -182,4 +364,152 @@ async function loadStatistics(){
 }
 
 
+
 loadStatistics();
+window.selectGuest = function(name){
+
+    document.getElementById("guestSearch").value = name;
+
+    suggestions.style.display = "none";
+
+    searchBtn.click();
+
+};
+window.showGuests = async function(){
+
+    const box = document.getElementById("receptionList");
+
+    box.innerHTML = "Chargement des invités...";
+
+
+    const q = query(
+        collection(db,"guests"),
+        where("weddingId","==",weddingId)
+    );
+
+
+    const snapshot = await getDocs(q);
+
+
+    box.innerHTML = `
+
+    <h2>
+        <i class="fi fi-rr-users"></i>
+        Liste des invités
+    </h2>
+
+    `;
+
+
+    snapshot.forEach((guestDoc)=>{
+
+
+        const guest = guestDoc.data();
+
+
+        box.innerHTML += `
+
+        <div class="guest-card">
+
+            <h3>
+                <i class="fi fi-rr-user"></i>
+                ${guest.name}
+            </h3>
+
+
+            <p>
+                <i class="fi fi-rr-users"></i>
+                Personnes : ${guest.people || 1}
+            </p>
+
+
+            <p>
+                <i class="fi fi-rr-table-picnic"></i>
+                Table : ${guest.table || "Non attribuée"}
+            </p>
+
+
+            <p>
+                <i class="fi fi-rr-check"></i>
+                ${guest.arrived ? "Arrivé" : "Pas encore arrivé"}
+            </p>
+
+        </div>
+
+        `;
+
+
+    });
+
+
+};
+
+
+
+window.showTables = async function(){
+
+
+    const box = document.getElementById("receptionList");
+
+    box.innerHTML = "Chargement des tables...";
+
+
+    const q = query(
+        collection(db,"tables"),
+        where("weddingId","==",weddingId)
+    );
+
+
+    const snapshot = await getDocs(q);
+
+
+    box.innerHTML = `
+
+    <h2>
+        <i class="fi fi-rr-table-picnic"></i>
+        Liste des tables
+    </h2>
+
+    `;
+
+
+    snapshot.forEach((tableDoc)=>{
+
+
+        const table = tableDoc.data();
+
+
+        box.innerHTML += `
+
+        <div class="table-card">
+
+            <h3>
+    <i class="fi fi-rr-chair"></i>
+    ${table.name || table.tableName || "Table sans nom"}
+</h3>
+
+
+<p>
+    Places :
+    ${table.capacity || table.seats || 0}
+</p>
+
+
+        </div>
+
+        `;
+
+
+    });
+
+
+};
+window.selectGuest = function(name){
+
+    document.getElementById("guestSearch").value = name;
+
+    suggestions.style.display = "none";
+
+    searchBtn.click();
+
+};
