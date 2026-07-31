@@ -1,4 +1,5 @@
 import { auth, db } from "./firebase.js";
+import { showToast } from "./utils.js";
 
 import {
     onAuthStateChanged
@@ -22,7 +23,10 @@ onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
 
-        guestList.innerHTML = "❌ Vous devez être connecté";
+        guestList.innerHTML = "Vous devez être connecté";
+
+        showToast("Vous devez être connecté", "error");
+
         return;
 
     }
@@ -42,7 +46,10 @@ onAuthStateChanged(auth, async (user) => {
 
         if (weddingSnapshot.empty) {
 
-            guestList.innerHTML = "❌ Aucun mariage trouvé";
+            guestList.innerHTML = "Aucun mariage trouvé";
+
+            showToast("Aucun mariage trouvé", "error");
+
             return;
 
         }
@@ -98,24 +105,30 @@ onAuthStateChanged(auth, async (user) => {
 
             <div class="guest-card">
 
-                <h3> ${guest.name}</h3>
+                <h3>${guest.name}</h3>
 
                 <p>
-                 Table : ${guest.table || "Pas encore attribuée"}
+                    Table : ${guest.table || "Pas encore attribuée"}
                 </p>
 
 
                 <button onclick="deleteGuest('${guestDoc.id}')">
-                🗑️ Supprimer
+
+                    <i class="fi fi-rr-trash"></i>
+                    Supprimer
+
                 </button>
+
+
                 <button onclick="editGuest('${guestDoc.id}')">
-✏️ Modifier
-</button>
+
+                    <i class="fi fi-rr-edit"></i>
+                    Modifier
+
+                </button>
 
 
             </div>
-
-            <hr>
 
             `;
 
@@ -130,7 +143,9 @@ onAuthStateChanged(auth, async (user) => {
         console.log(error);
 
         guestList.innerHTML =
-        "❌ Erreur : " + error.message;
+        "Erreur : " + error.message;
+
+        showToast(error.message, "error");
 
 
     }
@@ -156,7 +171,11 @@ window.deleteGuest = async function(id) {
         );
 
 
-        alert("Invité supprimé ✅");
+        showToast(
+            "Invité supprimé avec succès",
+            "success"
+        );
+
 
         location.reload();
 
@@ -164,6 +183,9 @@ window.deleteGuest = async function(id) {
 
 
 };
+
+
+
 window.editGuest = function(id){
 
     window.location.href = "editguest.html?id=" + id;
