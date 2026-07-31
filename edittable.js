@@ -1,39 +1,42 @@
-import { db } from "./firebase.js";
-import { showToast } from "./utils.js";
+import { auth, db } from "./firebase.js";
 
 import {
-    doc,
-    getDoc,
-    updateDoc
+    collection,
+    addDoc,
+    query,
+    where,
+    getDocs,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
 
-const params = new URLSearchParams(window.location.search);
+const addTableBtn = document.getElementById("addTableBtn");
 
-const guestId = params.get("id");
-
-
-
-const nameInput = document.getElementById("guestName");
-const tableInput = document.getElementById("guestTable");
-const saveBtn = document.getElementById("saveGuestBtn");
 const message = document.getElementById("message");
 
 
 
 
-// Charger l'invité
-
-async function loadGuest(){
+addTableBtn.addEventListener("click", async ()=>{
 
 
-    if(!guestId){
+    const tableName =
+    document.getElementById("tableName").value.trim();
+
+
+
+    const tableSeats =
+    document.getElementById("tableSeats").value;
+
+
+
+    if(tableName === "" || tableSeats === ""){
+
 
         message.innerHTML =
-        "Aucun invité sélectionné";
+        "❌ Remplissez tous les champs";
 
-        showToast("Aucun invité sélectionné","error");
 
         return;
 
@@ -41,112 +44,123 @@ async function loadGuest(){
 
 
 
+
+
+    const user = auth.currentUser;
+
+
+
+    if(!user){
+
+
+        message.innerHTML =
+        "❌ Vous devez être connecté";
+
+
+        return;
+
+    }
+
+
+
+
+
     try{
 
 
-        const guestRef = doc(db, "guests", guestId);
+        // Trouver le mariage de l'organisateur
 
 
-        const guestSnap = await getDoc(guestRef);
+        const weddingQuery = query(
 
+            collection(db,"weddings"),
 
+            where("userId","==",user.uid)
 
-        if(guestSnap.exists()){
-
-
-            const guest = guestSnap.data();
-
-
-            nameInput.value = guest.name;
-
-            tableInput.value = guest.table || "";
+        );
 
 
 
-        }else{
+        const weddingSnapshot =
+        await getDocs(weddingQuery);
+
+
+
+
+        if(weddingSnapshot.empty){
 
 
             message.innerHTML =
-            "Invité introuvable";
+            "❌ Aucun mariage trouvé";
 
-            showToast("Invité introuvable","error");
 
+            return;
 
         }
 
 
 
-    }catch(error){
 
 
-        console.log(error);
-
-        message.innerHTML =
-        "Erreur de chargement";
-
-        showToast("Erreur de chargement","error");
-
-
-    }
-
-
-}
+        let weddingId;
 
 
 
-loadGuest();
+        weddingSnapshot.forEach((weddingDoc)=>{
+
+
+            weddingId = weddingDoc.id;
+
+
+        });
 
 
 
 
 
 
-// Enregistrer les modifications
+
+        // Enregistrer la table dans Firebase
 
 
-saveBtn.addEventListener("click", async ()=>{
+        await addDoc(
 
-
-    if(!guestId){
-
-        message.innerHTML =
-        "Aucun invité sélectionné";
-
-        showToast("Aucun invité sélectionné","error");
-
-        return;
-
-    }
-
-
-
-    try{
-
-
-        await updateDoc(
-
-            doc(db,"guests",guestId),
+            collection(db,"tables"),
 
             {
 
-                name: nameInput.value,
 
-                table: tableInput.value
+                weddingId: weddingId,
+
+
+                tableName: tableName,
+
+
+                seats: Number(tableSeats),
+
+
+                createdAt: serverTimestamp()
+
 
             }
 
+
         );
+
+
 
 
 
         message.innerHTML =
-        "Invité modifié avec succès";
+        "✅ Table créée avec succès";
 
 
-        showToast(
-            "Invité modifié avec succès",
-            "success"
-        );
+
+        document.getElementById("tableName").value = "";
+
+        document.getElementById("tableSeats").value = "";
+
+
 
 
 
@@ -155,17 +169,13 @@ saveBtn.addEventListener("click", async ()=>{
 
         console.log(error);
 
+
         message.innerHTML =
-        "Erreur lors de la modification";
-
-
-        showToast(
-            "Erreur lors de la modification",
-            "error"
-        );
+        "❌ Erreur : " + error.message;
 
 
     }
+
 
 
 });
