@@ -1,4 +1,5 @@
 import { db } from "./firebase.js";
+import { showToast } from "./utils.js";
 
 import {
     doc,
@@ -30,7 +31,9 @@ async function loadGuest(){
     if(!guestId){
 
         message.innerHTML =
-        "❌ Aucun invité sélectionné";
+        "Aucun invité sélectionné";
+
+        showToast("Aucun invité sélectionné","error");
 
         return;
 
@@ -64,7 +67,9 @@ async function loadGuest(){
 
 
             message.innerHTML =
-            "❌ Invité introuvable";
+            "Invité introuvable";
+
+            showToast("Invité introuvable","error");
 
 
         }
@@ -77,7 +82,9 @@ async function loadGuest(){
         console.log(error);
 
         message.innerHTML =
-        "❌ Erreur de chargement";
+        "Erreur de chargement";
+
+        showToast("Erreur de chargement","error");
 
 
     }
@@ -103,7 +110,9 @@ saveBtn.addEventListener("click", async ()=>{
     if(!guestId){
 
         message.innerHTML =
-        "❌ Aucun invité sélectionné";
+        "Aucun invité sélectionné";
+
+        showToast("Aucun invité sélectionné","error");
 
         return;
 
@@ -131,7 +140,13 @@ saveBtn.addEventListener("click", async ()=>{
 
 
         message.innerHTML =
-        "✅ Invité modifié avec succès";
+        "Invité modifié avec succès";
+
+
+        showToast(
+            "Invité modifié avec succès",
+            "success"
+        );
 
 
 
@@ -141,7 +156,13 @@ saveBtn.addEventListener("click", async ()=>{
         console.log(error);
 
         message.innerHTML =
-        "❌ Erreur lors de la modification";
+        "Erreur lors de la modification";
+
+
+        showToast(
+            "Erreur lors de la modification",
+            "error"
+        );
 
 
     }
